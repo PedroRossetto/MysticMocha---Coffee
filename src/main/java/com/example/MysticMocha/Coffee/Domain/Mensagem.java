@@ -1,11 +1,15 @@
 package com.example.MysticMocha.Coffee.Domain;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "mensagem")
+@Getter
+@Setter
 public class Mensagem {
 
     @Id
@@ -16,17 +20,17 @@ public class Mensagem {
     @Column(length = 600)
     private String texto;
 
-    @Column
+    @Column(nullable = true)
     private String urlLink;
 
-    @Column
+    @Column(nullable = false)
     private LocalDateTime datahora;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn
     private Chat chat;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(nullable = false)
     private Usuario remetente;
 

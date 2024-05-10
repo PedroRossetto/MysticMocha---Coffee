@@ -1,10 +1,17 @@
 package com.example.MysticMocha.Coffee.Domain;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+
+@Getter
+@Setter
+@Entity
+@Table(name = "chamados")
 public class Chamado {
 
     @Id
@@ -24,7 +31,7 @@ public class Chamado {
     @Column(nullable = false, length = 300)
     private String categoria;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn
     private Usuario atendente;
 
